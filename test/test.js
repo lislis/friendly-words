@@ -20,13 +20,18 @@ describe('friendly words', function() {
         "HHHCCC",
         "BBBMMM",
         "EGONUH",
-        "HHRGOE"
+        "HHRGOE",
+        "AB"
     ];
 
     describe('it encodes words', function() {
         it('should encode a single word', function() {
             let word = "LALALA";
             assert.equal(friends.encodeWord(word), '010101');
+            assert.equal(friends.encodeWord('JKKJ'), '0110');
+            assert.equal(friends.encodeWord('JKKJJ'), '01100');
+            assert.equal(friends.encodeWord('HHHCCC'), '000111');
+            assert.equal(friends.encodeWord('HHRGOE'), '001234');
         });
 
         it('should encode lists of words', function() {
@@ -34,10 +39,11 @@ describe('friendly words', function() {
                 "010101",
                 "010101",
                 "010101",
-                "000333",
-                "000333",
+                "000111",
+                "000111",
                 "012345",
-                "002345"
+                "001234",
+                "01"
             ];
             assert.ok(equalArrays(friends.encodeWordList(list), encodedList));
         });
@@ -45,7 +51,7 @@ describe('friendly words', function() {
 
     describe('it handles friends', function() {
         it('should return sorted object of friends', function () {
-            let sortedObj = { '010101': 3, '000333': 2, '012345': 1, '002345': 1 };
+            let sortedObj = { '010101': 3, '000111': 2, '012345': 1, '001234': 1, '01': 1 };
             assert.equal(JSON.stringify(friends.sortFriends(list)), JSON.stringify(sortedObj));
         });
 

@@ -1,15 +1,15 @@
 function encodeWord(word) {
     let chars = word.split("");
     let code = [];
-    let charCounter = 0;
+    let charMap = {};
+    let counter = 0;
 
     chars.forEach((v, i) => {
-        if (word.indexOf(v, code.length) === -1) {
-            code.push(charCounter);
-            charCounter ++;
-        } else {
-            code.push(word.indexOf(v));
+        if (charMap[v] === undefined) {
+            charMap[v] = counter;
+            counter ++;
         }
+        code.push(charMap[v]);
     });
     return code.join('');
 }
