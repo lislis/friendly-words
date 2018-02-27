@@ -11,7 +11,7 @@ function encodeWord(word) {
         }
         code.push(charMap[v]);
     });
-    return code.join('');
+    return code.join('-');
 }
 
 function encodeWordList(wordList) {
